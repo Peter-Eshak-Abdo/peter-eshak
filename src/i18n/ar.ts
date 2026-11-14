@@ -81,7 +81,7 @@ export const ar: Dictionary = {
     contactTitle: "يلا نبني حاجة حقيقية.",
     contactBody:
       "بدوّر على تدريب أو وظيفة Junior أو شغل Freelance — أي مكان أتعلم فيه من فريق حقيقي. أسرع طريقة توصلّي بيها الإيميل أو الواتساب.",
-    rail: { hello: "أهلًا", work: "الأعمال", stack: "الأدوات", journey: "الرحلة", contact: "تواصل" },
+    rail: { label: "أقسام الصفحة", hello: "hello", work: "work", about: "about", stack: "stack", journey: "journey", contact: "contact" },
     morePage: "اقرأ أكتر",
   },
   projects: {

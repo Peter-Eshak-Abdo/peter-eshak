@@ -138,6 +138,20 @@
   }
 }
 
+/* Above-the-fold entrances run in CSS so they start on first paint, before hydration (better LCP). */
+@keyframes rise {
+  from { transform: translateY(105%); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+}
+@utility animate-rise {
+  animation: rise 0.95s var(--ease-out-expo) both;
+}
+@utility animate-fade-up {
+  animation: fade-up 0.9s var(--ease-out-expo) both;
+}
+
 @keyframes fade-in {
   from { opacity: 0; }
 }

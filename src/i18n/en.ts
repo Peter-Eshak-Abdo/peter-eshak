@@ -79,7 +79,7 @@ export const en = {
     contactTitle: "Let's build something real.",
     contactBody:
       "I'm looking for an internship, a junior role or freelance work — anywhere I can learn from a real team. The fastest way to reach me is email or WhatsApp.",
-    rail: { hello: "hello", work: "work", stack: "stack", journey: "journey", contact: "contact" },
+    rail: { label: "Page sections", hello: "hello", work: "work", about: "about", stack: "stack", journey: "journey", contact: "contact" },
     morePage: "Read more",
   },
   projects: {

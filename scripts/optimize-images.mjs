@@ -38,8 +38,8 @@ async function certifications() {
     files.map(async (file) => {
       const slug = path.parse(file).name;
       const base = sharp(path.join(from, file)).rotate();
-      await base.clone().resize({ width: 1600, withoutEnlargement: true }).webp({ quality: 78 }).toFile(path.join(dir, `${slug}.webp`));
-      await base.clone().resize({ width: 560 }).webp({ quality: 70 }).toFile(path.join(dir, `${slug}-thumb.webp`));
+      await base.clone().resize({ width: 1600, withoutEnlargement: true }).webp({ quality: 78 }).toFile(path.join(dir, `${slug}-1600.webp`));
+      await base.clone().resize({ width: 560 }).webp({ quality: 70 }).toFile(path.join(dir, `${slug}-560.webp`));
     }),
   );
   return files.length;
@@ -59,7 +59,7 @@ async function projects() {
     files.map(async (file) => {
       const slug = path.parse(file).name;
       const base = sharp(path.join(from, file));
-      await base.clone().resize({ width: 1440, withoutEnlargement: true }).webp({ quality: 76 }).toFile(path.join(dir, `${slug}.webp`));
+      await base.clone().resize({ width: 1440, withoutEnlargement: true }).webp({ quality: 76 }).toFile(path.join(dir, `${slug}-1440.webp`));
       await base.clone().resize({ width: 720 }).webp({ quality: 72 }).toFile(path.join(dir, `${slug}-720.webp`));
     }),
   );

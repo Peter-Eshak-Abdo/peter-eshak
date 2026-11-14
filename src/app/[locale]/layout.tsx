@@ -99,6 +99,10 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   return (
     <html lang={locale} dir={dirOf(locale)} className={fontVariables} suppressHydrationWarning>
       <body>
+        <noscript>
+          {/* Without JS, scroll reveals never fire — show their content immediately instead. */}
+          <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}[style*="translateY(105%)"]{transform:none!important}`}</style>
+        </noscript>
         <a
           href="#main"
           className="fixed start-3 top-3 z-[200] -translate-y-24 rounded-full bg-fg px-4 py-2 text-sm text-bg transition-transform focus:translate-y-0"

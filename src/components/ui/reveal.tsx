@@ -46,14 +46,14 @@ export function RevealHeading({
   id,
 }: {
   children: ReactNode;
-  as?: "h1" | "h2" | "h3";
+  as?: "h1" | "h2" | "h3" | "span";
   className?: string;
   delay?: number;
   id?: string;
 }) {
   const Tag = as;
   return (
-    <Tag id={id} className={cn("overflow-hidden pb-[0.08em]", className)}>
+    <Tag id={id} className={cn("block overflow-hidden pb-[0.08em]", className)}>
       <m.span
         className="block"
         initial={{ y: "105%" }}

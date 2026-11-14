@@ -35,7 +35,7 @@ export const profileSchema = z.object({
   }),
   socials: z.object({ github: url, linkedin: url, youtube: url, blog: url }),
   cvPdf: z.string().startsWith("/media/"),
-  portrait: z.object({ small: z.string(), large: z.string(), alt: localized }),
+  portrait: z.object({ src: z.string().startsWith("/media/"), alt: localized }),
   softSkills: z.array(localized),
   spokenLanguages: z.array(z.object({ name: localized, level: localized })),
 });
