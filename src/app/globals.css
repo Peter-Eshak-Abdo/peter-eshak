@@ -17,7 +17,7 @@
   --line-strong: oklch(0.8 0.016 85);
   --fg: oklch(0.255 0.028 258);
   --fg-muted: oklch(0.45 0.026 258);
-  --fg-subtle: oklch(0.56 0.02 258);
+  --fg-subtle: oklch(0.53 0.02 258); /* ≥4.5:1 on --bg for small mono labels */
 
   --mint: oklch(0.52 0.1 170);
   --mint-soft: oklch(0.93 0.045 170);
@@ -138,12 +138,16 @@
   }
 }
 
-/* Above-the-fold entrances run in CSS so they start on first paint, before hydration (better LCP). */
+/*
+ * Above-the-fold entrances run in CSS so they start on first paint, before hydration.
+ * They never start fully hidden: Chrome ignores opacity:0 / fully clipped text as an LCP candidate,
+ * so a 0.01 opacity floor and a partial rise keep LCP at first paint with the same look.
+ */
 @keyframes rise {
-  from { transform: translateY(105%); }
+  from { transform: translateY(70%); }
 }
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0.01; transform: translateY(20px); }
 }
 @utility animate-rise {
   animation: rise 0.95s var(--ease-out-expo) both;

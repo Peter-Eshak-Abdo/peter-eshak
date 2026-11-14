@@ -122,7 +122,7 @@ function ProjectTile({ project, large }: { project: ExplorerProject; large: bool
           </span>
           <span className="font-mono text-[0.7rem] text-subtle">{project.year}</span>
         </div>
-        <h3 className={cn("font-semibold leading-tight", large ? "text-h3" : "text-lg")}>{project.title}</h3>
+        <h2 className={cn("font-semibold leading-tight", large ? "text-h3" : "text-lg")}>{project.title}</h2>
         <p className="text-sm text-muted">{project.tagline}</p>
         <div className="mt-auto flex items-end justify-between gap-3 pt-2">
           <p className="font-mono text-[0.7rem] text-subtle" dir="ltr">

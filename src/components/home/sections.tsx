@@ -14,10 +14,13 @@ import { SpotlightGroup } from "@/components/ui/spotlight-group";
 
 const cell = "spotlight surface flex flex-col gap-4 p-6";
 
-function MoreLink({ to, label }: { to: string; label: string }) {
+function MoreLink({ to, label, context }: { to: string; label: string; context: string }) {
   return (
     <Link href={to} className="group inline-flex items-center gap-1.5 text-sm font-medium text-fg">
-      <span className="underline decoration-line-strong underline-offset-4 transition-colors group-hover:decoration-accent">{label}</span>
+      <span className="underline decoration-line-strong underline-offset-4 transition-colors group-hover:decoration-accent">
+        {label}
+        <span className="sr-only"> — {context}</span>
+      </span>
       <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:-scale-x-100" aria-hidden="true" />
     </Link>
   );
@@ -43,7 +46,7 @@ export function AboutBento({ locale, dict, profile, journey }: { locale: Locale;
                   </p>
                 ))}
               </div>
-              <MoreLink to={href(locale, "/about")} label={dict.home.morePage} />
+              <MoreLink to={href(locale, "/about")} label={dict.home.morePage} context={dict.nav.about} />
             </div>
           </StaggerItem>
 
@@ -131,7 +134,7 @@ export function StackPreview({ locale, dict, skills }: { locale: Locale; dict: D
     <section id="stack" aria-labelledby="stack-title" className="container-page scroll-mt-24 py-24 sm:py-32">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <SectionHeading command="npm ls --depth=0" title={dict.home.stackTitle} intro={dict.home.stackIntro} id="stack-title" tone="lavender" />
-        <MoreLink to={href(locale, "/skills")} label={dict.home.morePage} />
+        <MoreLink to={href(locale, "/skills")} label={dict.home.morePage} context={dict.nav.skills} />
       </div>
       <SpotlightGroup className="mt-12">
         <Stagger className="grid gap-4 md:grid-cols-2">
@@ -149,7 +152,7 @@ export function StackPreview({ locale, dict, skills }: { locale: Locale; dict: D
                   {group.items.map((item) => (
                     <li key={item.name} className="flex items-center justify-between gap-3 border-b border-dashed border-line pb-2 text-sm">
                       <span>{item.name}</span>
-                      <span className="flex gap-0.5" aria-label={dict.skills.levels[item.level]} title={dict.skills.levels[item.level]}>
+                      <span role="img" className="flex gap-0.5" aria-label={dict.skills.levels[item.level]} title={dict.skills.levels[item.level]}>
                         {[0, 1, 2].map((d) => (
                           <span key={d} className={cn("h-1.5 w-3 rounded-full", d < levelDots[item.level] ? "bg-tone" : "bg-line")} />
                         ))}
@@ -180,7 +183,7 @@ export function JourneyPreview({ locale, dict, journey }: { locale: Locale; dict
     <section id="journey" aria-labelledby="journey-title" className="container-page scroll-mt-24 py-24 sm:py-32">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <SectionHeading command="git log --graph --oneline" title={dict.home.journeyTitle} id="journey-title" tone="sky" />
-        <MoreLink to={href(locale, "/about#journey")} label={dict.home.morePage} />
+        <MoreLink to={href(locale, "/about#journey")} label={dict.home.morePage} context={dict.home.journeyTitle} />
       </div>
       <ol className="relative mt-12 flex flex-col">
         <span aria-hidden="true" className="absolute bottom-3 start-[7px] top-3 w-px bg-gradient-to-b from-line-strong via-line to-transparent" />

@@ -48,6 +48,7 @@ export function Orbit({
     let raf = 0;
     let visible = true;
     let dragging = false;
+    let ready = false; // set once the page is idle
     let lastX = 0;
 
     const layout = () => {
@@ -79,7 +80,7 @@ export function Orbit({
     };
 
     const start = () => {
-      if (reduce || raf || !visible) return;
+      if (reduce || raf || !visible || !ready) return;
       last = performance.now();
       raf = requestAnimationFrame(tick);
     };
@@ -129,9 +130,16 @@ export function Orbit({
     el.addEventListener("pointercancel", onUp);
 
     layout();
-    start();
+    // Keep the loop out of the critical loading window: start once the page is idle.
+    const begin = () => {
+      ready = true;
+      start();
+    };
+    const idle = window.requestIdleCallback ? window.requestIdleCallback(begin, { timeout: 2500 }) : window.setTimeout(begin, 1200);
 
     return () => {
+      if (window.cancelIdleCallback) window.cancelIdleCallback(idle);
+      else window.clearTimeout(idle);
       cancelAnimationFrame(raf);
       resize.disconnect();
       io.disconnect();

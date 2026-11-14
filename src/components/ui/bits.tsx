@@ -42,11 +42,29 @@ export function SectionHeading({
   return (
     <header data-tone={tone} className={cn("flex max-w-3xl flex-col gap-4", className)}>
       <TypedCommand command={command} />
-      <RevealHeading as={as} id={id} className={as === "h1" ? "text-h1 font-semibold" : "text-h2 font-semibold"}>
-        {title}
-      </RevealHeading>
+      {as === "h1" ? (
+        <RiseHeading id={id} className="text-h1 font-semibold">
+          {title}
+        </RiseHeading>
+      ) : (
+        <RevealHeading as="h2" id={id} className="text-h2 font-semibold">
+          {title}
+        </RevealHeading>
+      )}
       {intro && <p className="max-w-2xl text-base text-muted sm:text-lg">{intro}</p>}
     </header>
+  );
+}
+
+/**
+ * Page title entrance in pure CSS: it starts on first paint (no hydration wait) and is never fully
+ * hidden, so it stays the LCP candidate at first paint.
+ */
+export function RiseHeading({ children, id, className }: { children: ReactNode; id?: string; className?: string }) {
+  return (
+    <h1 id={id} className={cn("block overflow-hidden pb-[0.08em]", className)}>
+      <span className="block animate-rise">{children}</span>
+    </h1>
   );
 }
 

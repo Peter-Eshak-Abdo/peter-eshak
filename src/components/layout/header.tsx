@@ -51,13 +51,13 @@ export function Header({ locale, name, nav, labels }: HeaderProps) {
               : "border-transparent bg-transparent",
           )}
         >
-          <Link href={href(locale)} className="group flex items-center gap-2.5 rounded-full py-1 pe-3 ps-1" aria-label={name}>
-            <span dir="ltr" className="grid h-10 min-w-10 place-items-center rounded-full bg-fg px-2 font-mono text-[0.8rem] font-semibold text-bg transition-transform duration-500 ease-spring group-hover:-rotate-6">
+          <Link href={href(locale)} className="group flex items-center gap-2.5 rounded-full py-1 pe-3 ps-1">
+            <span dir="ltr" aria-hidden="true" className="grid h-10 min-w-10 place-items-center rounded-full bg-fg px-2 font-mono text-[0.8rem] font-semibold text-bg transition-transform duration-500 ease-spring group-hover:-rotate-6">
               <span>
                 pe<span className="animate-blink text-accent">_</span>
               </span>
             </span>
-            <span className="hidden text-sm font-semibold tracking-tight sm:inline">{name}</span>
+            <span className="sr-only text-sm font-semibold tracking-tight sm:not-sr-only">{name}</span>
           </Link>
 
           <nav aria-label={labels.primary} className="mx-auto hidden lg:block">

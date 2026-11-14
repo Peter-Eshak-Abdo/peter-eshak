@@ -6,9 +6,9 @@ import { GitHubIcon } from "@/components/icons";
 import { ArchitectureDiagram } from "@/components/projects/architecture-diagram";
 import { CodeBlock } from "@/components/projects/code-block";
 import { ProjectVisual } from "@/components/projects/project-visual";
-import { Chip } from "@/components/ui/bits";
+import { Chip, RiseHeading } from "@/components/ui/bits";
 import { ButtonAnchor } from "@/components/ui/button";
-import { Reveal, RevealHeading } from "@/components/ui/reveal";
+import { Reveal } from "@/components/ui/reveal";
 import { TypedCommand } from "@/components/ui/typed-command";
 import { getProject, projectsWithPages } from "@/content";
 import { getDictionary } from "@/i18n";
@@ -55,9 +55,7 @@ export default async function ProjectPage({ params }: Params) {
       <header className="mt-10 grid gap-10 lg:grid-cols-12">
         <div className="flex flex-col gap-5 lg:col-span-7">
           <TypedCommand command={`open ./${project.slug}`} />
-          <RevealHeading as="h1" className="text-h1 font-semibold">
-            {tr(project.title, locale)}
-          </RevealHeading>
+          <RiseHeading className="text-h1 font-semibold">{tr(project.title, locale)}</RiseHeading>
           <p className="max-w-2xl text-xl text-muted">{tr(project.tagline, locale)}</p>
           <div className="flex flex-wrap items-center gap-2 pt-2">
             {project.links.live && (

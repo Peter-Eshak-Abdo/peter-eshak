@@ -14,7 +14,8 @@
     "typecheck": "tsc --noEmit",
     "check": "npm run lint && npm run typecheck && npm run build",
     "images": "node scripts/optimize-images.mjs",
-    "deploy": "npm run check && firebase deploy --only hosting"
+    "deploy": "npm run check && firebase deploy --only hosting",
+    "postbuild": "node scripts/postbuild.mjs"
   },
   "dependencies": {
     "cmdk": "^1.1.1",
