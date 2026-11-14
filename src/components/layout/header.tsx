@@ -123,7 +123,7 @@ export function Header({ locale, name, nav, labels }: HeaderProps) {
       >
         <div className="surface flex flex-col gap-6 p-5">
           <div className="flex items-center justify-between">
-            <span className="label-mono">~/menu</span>
+            <span className="label-mono" dir="ltr">~/menu</span>
             <button
               type="button"
               onClick={() => setMenuOpen(false)}
