@@ -84,6 +84,7 @@ export const en = {
   },
   projects: {
     title: "Projects",
+    filterLabel: "Filter projects by type",
     intro:
       "Everything I've built, from the platforms I maintain today to coursework and the first pages I ever wrote. Filter by type, or open any project for the details.",
     filters: {
