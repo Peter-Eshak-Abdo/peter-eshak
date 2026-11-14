@@ -1,0 +1,46 @@
+import "server-only";
+import { z } from "zod";
+import { certifications as rawCertifications, certificationsAlbum } from "./certifications";
+import { journey as rawJourney } from "./journey";
+import { profile as rawProfile } from "./profile";
+import { projects as rawProjects } from "./projects";
+import { certificationSchema, journeySchema, profileSchema, projectSchema, skillGroupSchema } from "./schema";
+import { skills as rawSkills } from "./skills";
+
+function parse<T extends z.ZodType>(name: string, schema: T, data: unknown): z.infer<T> {
+  const result = schema.safeParse(data);
+  if (!result.success) {
+    throw new Error(`Invalid content in "${name}":\n${z.prettifyError(result.error)}`);
+  }
+  return result.data;
+}
+
+export const profile = parse("profile", profileSchema, rawProfile);
+
+export const projects = parse(
+  "projects",
+  z.array(projectSchema).superRefine((list, ctx) => {
+    const seen = new Set<string>();
+    for (const p of list) {
+      if (seen.has(p.slug)) ctx.addIssue({ code: "custom", message: `Duplicate project slug "${p.slug}"` });
+      seen.add(p.slug);
+    }
+  }),
+  rawProjects,
+);
+
+export const skills = parse("skills", z.array(skillGroupSchema), rawSkills);
+export const journey = parse("journey", z.array(journeySchema), rawJourney);
+export const certifications = parse("certifications", z.array(certificationSchema), rawCertifications);
+export { certificationsAlbum };
+
+export const featuredProjects = projects
+  .filter((p) => p.featured !== undefined)
+  .sort((a, b) => (a.featured ?? 0) - (b.featured ?? 0));
+
+export function getProject(slug: string) {
+  return projects.find((p) => p.slug === slug);
+}
+
+/** Projects that get their own detail page. */
+export const projectsWithPages = projects.filter((p) => p.category !== "teaching");
