@@ -7,10 +7,14 @@ export const journey: z.input<typeof journeySchema>[] = [
     id: "nti-mean",
     kind: "course",
     start: "2026-07",
-    end: "2026-09",
-    title: { en: "MEAN Stack Web Development", ar: "تطوير الويب MEAN Stack" },
-    org: { en: "NTI — National Telecommunication Institute", ar: "المعهد القومي للاتصالات (NTI)" },
+    end: "2026-08",
+    title: { en: "MEAN-Stack Web Development", ar: "تطوير الويب MEAN-Stack" },
+    org: { en: "NTI × ITIDA — National Telecommunication Institute", ar: "المعهد القومي للاتصالات (NTI) و ITIDA" },
     points: [
+      {
+        en: "120-hour summer training (90 technical + 30 freelancing hours), 26 July – 20 August 2026 — finished with a score of 98%.",
+        ar: "تدريب صيفي 120 ساعة (90 ساعة تقنية + 30 ساعة Freelancing)، من 26 يوليو لـ 20 أغسطس 2026 — وخلّصته بتقدير 98%.",
+      },
       {
         en: "MongoDB, Express, Angular and Node.js end to end; built PharmaHub as the track project.",
         ar: "MongoDB و Express و Angular و Node.js من الأول للآخر؛ وعملت PharmaHub كمشروع التراك.",
@@ -21,16 +25,17 @@ export const journey: z.input<typeof journeySchema>[] = [
   {
     id: "iti-node",
     kind: "course",
-    start: "2026",
-    title: { en: "Back-end Development with Node.js", ar: "تطوير Back-end بـ Node.js" },
+    start: "2026-07",
+    end: "2026-08",
+    title: { en: "Backend Fundamentals using Node.js", ar: "أساسيات الـ Backend باستخدام Node.js" },
     org: { en: "ITI — Information Technology Institute", ar: "معهد تكنولوجيا المعلومات (ITI)" },
     points: [
       {
-        en: "REST API design, authentication with JWT, validation, file uploads and MongoDB modelling.",
-        ar: "تصميم REST API، ومصادقة بـ JWT، والتحقق من البيانات، ورفع الملفات، وتصميم موديلات MongoDB.",
+        en: "162 hours, 1 July – 15 August 2026: client-side technologies, modern JavaScript (ES6+), Node.js application development, MongoDB, scalable APIs with NestJS, generative AI, AI agents & workflow automation, freelancing and a final project.",
+        ar: "162 ساعة، من 1 يوليو لـ 15 أغسطس 2026: تقنيات الـ Client-side، و JavaScript الحديثة (ES6+)، وتطوير تطبيقات Node.js، و MongoDB، وبناء APIs قابلة للتوسع بـ NestJS، والـ Generative AI والـ AI Agents وأتمتة الـ Workflows، والـ Freelancing، ومشروع نهائي.",
       },
     ],
-    tags: ["Node.js", "Express", "JWT", "Mongoose"],
+    tags: ["Node.js", "NestJS", "MongoDB", "AI agents"],
   },
   {
     id: "first-production-app",

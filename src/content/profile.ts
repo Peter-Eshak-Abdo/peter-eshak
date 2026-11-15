@@ -65,7 +65,7 @@ export const profile = {
   cvPdf: "/media/cv/Peter-Eshak-Abdo-CV.pdf",
   portrait: {
     src: "/media/portrait/portrait",
-    alt: { en: "Peter Eshak Abdo smiling by the lake in Ismailia", ar: "بيتر إسحاق عبده مبتسم جنب البحيرة في الإسماعيلية" },
+    alt: { en: "Professional headshot of Peter Eshak Abdo", ar: "صورة شخصية احترافية لبيتر إسحاق عبده" },
   },
   softSkills: [
     { en: "Self-education", ar: "التعلّم الذاتي" },

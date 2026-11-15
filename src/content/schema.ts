@@ -74,6 +74,8 @@ export const projectSchema = z.object({
   highlights: z.array(localized),
   metrics: z.array(z.object({ value: z.string(), label: localized })).max(4),
   image: z.object({ name: slug, alt: localized }).optional(),
+  /** Extra screenshots: assets/gallery/<project-slug>/<name>.png */
+  gallery: z.array(z.object({ name: slug, caption: localized, device: z.enum(["desktop", "mobile"]).default("desktop") })).default([]),
   accent,
   caseStudy: caseStudySchema.optional(),
 });
@@ -110,7 +112,7 @@ export const certificationSchema = z.object({
   issuer: z.string(),
   date: yearMonth,
   featured: z.boolean(),
-  topic: z.enum(["web", "office", "business", "marketing"]),
+  topic: z.enum(["web", "programming", "office", "education", "design", "business", "marketing", "engineering"]),
 });
 
 export type Profile = z.infer<typeof profileSchema>;

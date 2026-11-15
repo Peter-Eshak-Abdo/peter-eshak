@@ -54,6 +54,20 @@ export const projects: ProjectInput[] = [
       { value: "2", label: { en: "languages", ar: "لغة" } },
     ],
     image: { name: "abona-faltaus", alt: { en: "Abouna Faltaous exam system home screen", ar: "الشاشة الرئيسية لنظام امتحانات أبونا فلتاؤس" } },
+    gallery: [
+      { name: "bible", caption: { en: "The full Bible, both testaments, with adjustable text size", ar: "الكتاب المقدس كامل بعهديه مع تكبير وتصغير الخط" } },
+      { name: "readings", caption: { en: "Daily readings (Katameros)", ar: "القراءات اليومية (القطمارس)" } },
+      { name: "synaxarium", caption: { en: "Synaxarium — the saints of each day, browsable by date", ar: "السنكسار — سير القديسين لكل يوم حسب التاريخ" } },
+      { name: "calendar", caption: { en: "Coptic calendar with feasts and fasts", ar: "التقويم القبطي بالأعياد والأصوام" } },
+      { name: "agpeya", caption: { en: "The Agpeya — the daily prayer hours", ar: "الأجبية — صلوات السواعي" } },
+      { name: "liturgies", caption: { en: "Liturgy texts organised by section", ar: "نصوص القداسات مقسمة بالأجزاء" } },
+      { name: "tasbeha", caption: { en: "Midnight Praise (Tasbeha)", ar: "تسبحة نصف الليل" } },
+      { name: "prayers", caption: { en: "Prayer library by occasion", ar: "مكتبة الصلوات حسب المناسبة" } },
+      { name: "slides", caption: { en: "Presentation builder for servants", ar: "صانع العروض التقديمية للخدام" } },
+      { name: "home", caption: { en: "Home page", ar: "الصفحة الرئيسية" } },
+      { name: "m-bible", caption: { en: "Bible reader on mobile", ar: "قراءة الكتاب المقدس على الموبايل" }, device: "mobile" },
+      { name: "m-exam", caption: { en: "Exam system on mobile", ar: "نظام الامتحانات على الموبايل" }, device: "mobile" },
+    ],
     accent: "apricot",
     caseStudy: {
       challenge: {
@@ -148,6 +162,9 @@ export const projects: ProjectInput[] = [
       { value: "3", label: { en: "sign-in methods", ar: "طرق دخول" } },
     ],
     image: { name: "elnosor-members", alt: { en: "Elnosor Members sign-in screen", ar: "شاشة تسجيل الدخول لتطبيق شباب النسور" } },
+    gallery: [
+      { name: "m-home", caption: { en: "Sign-in on mobile", ar: "تسجيل الدخول على الموبايل" }, device: "mobile" },
+    ],
     accent: "mint",
   },
   {
@@ -283,6 +300,13 @@ export const projects: ProjectInput[] = [
       { value: "355", label: { en: "products in the store", ar: "منتج في المتجر" } },
     ],
     image: { name: "copy-cat", alt: { en: "Copy Cat storefront home page", ar: "الصفحة الرئيسية لمتجر كوبي كات" } },
+    gallery: [
+      { name: "services", caption: { en: "Services: printing, 4×6 photos, document formatting", ar: "الخدمات: طباعة، صور 4×6، تنسيق مستندات" } },
+      { name: "categories", caption: { en: "Product categories", ar: "أقسام المنتجات" } },
+      { name: "products", caption: { en: "Store catalogue with search and filters", ar: "كتالوج المتجر بالبحث والفلاتر" } },
+      { name: "faq", caption: { en: "Frequently asked questions", ar: "الأسئلة الشائعة" } },
+      { name: "m-home", caption: { en: "Storefront on mobile", ar: "المتجر على الموبايل" }, device: "mobile" },
+    ],
     accent: "sky",
   },
 
@@ -311,6 +335,9 @@ export const projects: ProjectInput[] = [
     ],
     metrics: [],
     image: { name: "nota", alt: { en: "Nota sign-in screen", ar: "شاشة دخول تطبيق نوتة" } },
+    gallery: [
+      { name: "m-home", caption: { en: "Code or passkey sign-in on mobile", ar: "الدخول بالكود أو البصمة على الموبايل" }, device: "mobile" },
+    ],
     accent: "apricot",
   },
   {
@@ -336,6 +363,9 @@ export const projects: ProjectInput[] = [
     ],
     metrics: [],
     image: { name: "voiceclear", alt: { en: "VoiceClear upload screen", ar: "شاشة رفع الفويس في VoiceClear" } },
+    gallery: [
+      { name: "m-home", caption: { en: "Upload or record a voice note on mobile", ar: "رفع أو تسجيل فويس على الموبايل" }, device: "mobile" },
+    ],
     accent: "mint",
   },
   {
@@ -361,6 +391,11 @@ export const projects: ProjectInput[] = [
     ],
     metrics: [],
     image: { name: "pharmahub", alt: { en: "PharmaHub landing page", ar: "الصفحة الرئيسية لـ PharmaHub" } },
+    gallery: [
+      { name: "specialties", caption: { en: "Browse doctors by specialty", ar: "تصفح الدكاترة حسب التخصص" } },
+      { name: "how-it-works", caption: { en: "How booking works, plus patient reviews", ar: "خطوات الحجز وآراء المرضى" } },
+      { name: "m-home", caption: { en: "Doctor search on mobile", ar: "البحث عن دكتور على الموبايل" }, device: "mobile" },
+    ],
     accent: "sky",
   },
   {

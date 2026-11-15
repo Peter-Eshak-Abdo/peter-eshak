@@ -1,5 +1,6 @@
 name: Preview on PR
 on: pull_request
+# Least privilege: only what the preview comment and checks need.
 permissions:
   checks: write
   contents: read
@@ -9,22 +10,30 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build_and_preview:
+    # Never run with secrets for PRs from forks.
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      # Actions are pinned to full commit SHAs (supply-chain hardening); Dependabot keeps them current.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm audit --omit=dev --audit-level=high
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+          NEXT_PUBLIC_SITE_URL: https://peter-eshak.web.app
+      - uses: FirebaseExtended/action-hosting-deploy@500ac625ca2dd40cbd15f7659af953801858032a # v0.11.0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TOFA7A_5E936 }}
+          # Firebase project IDs are permanent; the public site is "peter-eshak" (see firebase.json).
           projectId: tofa7a-5e936

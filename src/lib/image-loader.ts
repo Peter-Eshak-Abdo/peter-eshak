@@ -7,6 +7,7 @@ const variants: Record<string, number[]> = {
   projects: [720, 1440],
   portrait: [480, 900],
   certifications: [560, 1600],
+  gallery: [720, 1440],
 };
 
 export default function mediaLoader({ src, width }: { src: string; width: number; quality?: number }): string {

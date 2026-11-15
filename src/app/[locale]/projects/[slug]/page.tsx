@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { GitHubIcon } from "@/components/icons";
 import { ArchitectureDiagram } from "@/components/projects/architecture-diagram";
 import { CodeBlock } from "@/components/projects/code-block";
+import { ProjectGallery } from "@/components/projects/project-gallery";
 import { ProjectVisual } from "@/components/projects/project-visual";
 import { Chip, RiseHeading } from "@/components/ui/bits";
 import { ButtonAnchor } from "@/components/ui/button";
@@ -141,6 +142,18 @@ export default async function ProjectPage({ params }: Params) {
           </div>
         )}
       </section>
+
+      {project.gallery.length > 0 && (
+        <section aria-labelledby="gallery-title" className="mt-20">
+          <h2 id="gallery-title" className="label-mono mb-6">
+            {t.gallery} <span className="text-tone">({project.gallery.length})</span>
+          </h2>
+          <ProjectGallery
+            shots={project.gallery.map((g) => ({ src: `/media/gallery/${project.slug}-${g.name}`, caption: tr(g.caption, locale), device: g.device }))}
+            labels={{ close: dict.a11y.close, previous: dict.a11y.previous, next: dict.a11y.next, open: dict.actions.openImage }}
+          />
+        </section>
+      )}
 
       {cs && (
         <>

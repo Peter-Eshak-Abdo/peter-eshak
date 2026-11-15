@@ -54,6 +54,7 @@ export const ar: Dictionary = {
     seeAll: "شوف الكل",
     print: "اطبع",
     viewCertificate: "اعرض الشهادة",
+    openImage: "افتح الصورة",
     openAlbum: "كل الشهادات (الألبوم)",
     backHome: "ارجع للرئيسية",
     getInTouch: "تواصل معايا",
@@ -113,6 +114,7 @@ export const ar: Dictionary = {
     outcome: "النتيجة",
     learned: "اتعلمت إيه",
     overview: "نظرة عامة",
+    gallery: "صور من المشروع",
     next: "المشروع اللي بعده",
   },
   about: {
@@ -134,10 +136,12 @@ export const ar: Dictionary = {
   },
   certifications: {
     title: "الشهادات",
-    intro: "كورسات وشهادات من سنة 2019. أهمها تحت، والألبوم فيه الباقي.",
+    intro: "كورسات وشهادات من سنة 2019 — الأبرز الأول، وبعدين الكل، وتقدر تفلترهم حسب المجال.",
+    count: "شهادة",
+    filterLabel: "فلترة الشهادات حسب المجال",
     featured: "الأبرز",
     all: "كل الشهادات",
-    topics: { web: "ويب", office: "أوفيس", business: "بيزنس", marketing: "تسويق" },
+    topics: { web: "ويب", programming: "برمجة", office: "أوفيس", education: "تعليم وتكنولوجيا تعليم", design: "تصميم", business: "بيزنس", marketing: "تسويق", engineering: "هندسة" },
   },
   cv: {
     title: "السيرة الذاتية",
