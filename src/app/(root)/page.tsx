@@ -1,11 +1,11 @@
 import Link from "next/link";
 
 /*
- * "/" picks a language: the visitor's saved choice, else their browser language, else English.
+ * "/" picks a language: the visitor's saved choice, else English.
  * Static hosting has no server-side negotiation, so this runs as a tiny inline script before paint;
  * the visible links are the no-JS fallback.
  */
-const pickLocale = `(function(){try{var s=localStorage.getItem("preferred-locale");var l=s==="ar"||s==="en"?s:((navigator.languages||[navigator.language]).some(function(x){return /^ar\\b/i.test(x)})?"ar":"en");location.replace("/"+l+location.hash)}catch(e){location.replace("/en")}})();`;
+const pickLocale = `(function(){try{var s=localStorage.getItem("preferred-locale");var l=s==="ar"||s==="en"?s:"en";location.replace("/"+l+location.hash)}catch(e){location.replace("/en")}})();`;
 
 export default function LanguageGate() {
   return (
