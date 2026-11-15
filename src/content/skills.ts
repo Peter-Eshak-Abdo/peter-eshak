@@ -44,6 +44,7 @@ export const skills: z.input<typeof skillGroupSchema>[] = [
       { name: "PostgreSQL", level: "solid" },
       { name: "Firebase", level: "daily" },
       { name: "MongoDB / Mongoose", level: "solid", since: "2026" },
+      { name: "NestJS", level: "familiar", since: "2026" },
     ],
   },
   {
@@ -61,6 +62,7 @@ export const skills: z.input<typeof skillGroupSchema>[] = [
       { name: "Firebase Hosting", level: "solid" },
       { name: "PWA / Service Workers", level: "solid" },
       { name: "Gemini & AI SDKs", level: "solid" },
+      { name: "AI agents & workflows", level: "familiar", since: "2026" },
       { name: "OneSignal", level: "solid" },
       { name: "Google Search Console", level: "solid" },
       { name: "n8n", level: "familiar" },

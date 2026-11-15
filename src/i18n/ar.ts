@@ -54,6 +54,7 @@ export const ar: Dictionary = {
     seeAll: "شوف الكل",
     print: "اطبع",
     viewCertificate: "اعرض الشهادة",
+    openImage: "افتح الصورة",
     openAlbum: "كل الشهادات (الألبوم)",
     backHome: "ارجع للرئيسية",
     getInTouch: "تواصل معايا",
@@ -113,6 +114,7 @@ export const ar: Dictionary = {
     outcome: "النتيجة",
     learned: "اتعلمت إيه",
     overview: "نظرة عامة",
+    gallery: "صور من المشروع",
     next: "المشروع اللي بعده",
   },
   about: {

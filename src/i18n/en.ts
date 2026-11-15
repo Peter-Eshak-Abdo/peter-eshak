@@ -52,6 +52,7 @@ export const en = {
     seeAll: "See everything",
     print: "Print",
     viewCertificate: "View certificate",
+    openImage: "Open image",
     openAlbum: "All certificates (album)",
     backHome: "Back home",
     getInTouch: "Get in touch",
@@ -111,6 +112,7 @@ export const en = {
     outcome: "Outcome",
     learned: "What I learned",
     overview: "Overview",
+    gallery: "Gallery",
     next: "Next project",
   },
   about: {

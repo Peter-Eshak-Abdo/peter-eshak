@@ -66,6 +66,33 @@ async function projects() {
   return files.length;
 }
 
+/** assets/gallery/<project>/<shot>.png → public/media/gallery/<project>-<shot>-<width>.webp */
+async function gallery() {
+  const from = path.join(SRC, "gallery");
+  const dir = path.join(OUT, "gallery");
+  await fresh(dir);
+  let count = 0;
+  let projectsDirs = [];
+  try {
+    projectsDirs = await readdir(from, { withFileTypes: true });
+  } catch {
+    return 0;
+  }
+  for (const project of projectsDirs.filter((d) => d.isDirectory())) {
+    const files = (await readdir(path.join(from, project.name))).filter((f) => /\.(png|jpe?g|webp)$/i.test(f));
+    await Promise.all(
+      files.map(async (file) => {
+        const name = `${project.name}-${path.parse(file).name}`;
+        const base = sharp(path.join(from, project.name, file));
+        await base.clone().resize({ width: 1440, withoutEnlargement: true }).webp({ quality: 74 }).toFile(path.join(dir, `${name}-1440.webp`));
+        await base.clone().resize({ width: 720, withoutEnlargement: true }).webp({ quality: 70 }).toFile(path.join(dir, `${name}-720.webp`));
+      }),
+    );
+    count += files.length;
+  }
+  return count;
+}
+
 async function cv() {
   const dir = path.join(OUT, "cv");
   await fresh(dir);
@@ -75,5 +102,6 @@ async function cv() {
 await portrait();
 const certs = await certifications();
 const shots = await projects();
+const galleryShots = await gallery();
 await cv();
-console.log(`✓ portrait, ${certs} certificates, ${shots} project screenshots, CV`);
+console.log(`✓ portrait, ${certs} certificates, ${shots} project screenshots, ${galleryShots} gallery shots, CV`);

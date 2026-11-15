@@ -6,6 +6,22 @@ export const certificationsAlbum = "https://photos.app.goo.gl/1AE4ULmKr1PqstzQ8"
 
 export const certifications: z.input<typeof certificationSchema>[] = [
   {
+    slug: "nti-mean-stack",
+    title: { en: "MEAN-Stack Web Development — 120 hrs, score 98%", ar: "تطوير الويب MEAN-Stack — 120 ساعة، بتقدير 98%" },
+    issuer: "NTI × ITIDA",
+    date: "2026-08",
+    featured: true,
+    topic: "web",
+  },
+  {
+    slug: "iti-nodejs-backend",
+    title: { en: "Backend Fundamentals using Node.js — 162 hrs", ar: "أساسيات الـ Backend باستخدام Node.js — 162 ساعة" },
+    issuer: "ITI",
+    date: "2026-08",
+    featured: true,
+    topic: "web",
+  },
+  {
     slug: "mta-html5",
     title: { en: "Microsoft Technology Associate — HTML5 Application Development Fundamentals", ar: "Microsoft Technology Associate — أساسيات تطوير تطبيقات HTML5" },
     issuer: "Microsoft",

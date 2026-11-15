@@ -13,30 +13,21 @@
 > لو الـ Preview منزلش، اتأكد إن الـ secret `FIREBASE_SERVICE_ACCOUNT_TOFA7A_5E936` لسه موجود في
 > GitHub → Settings → Secrets → Actions (كان موجود قبل كده).
 
-## 2) دومين جديد من غير "tofa7a" (اتفقنا عليها)
+## 2) اسم الموقع والريبو ✅ (اتعملت)
 
-اسم مشروع Firebase مينفعش يتغير، بس ممكن تعمل **site** جديد جوه نفس المشروع:
-
-```bash
-firebase login
-firebase hosting:sites:create peter-eshak-abdo        # لو الاسم محجوز جرّب اسم تاني
-firebase target:apply hosting portfolio peter-eshak-abdo
-```
-
-وبعدها عدّل 3 حاجات (أو قولّي وأنا أعدلها):
-
-- `firebase.json`: ضيف `"target": "portfolio"` جوه `hosting`.
-- الـ workflows في `.github/workflows/*.yml`: ضيف `target: portfolio` تحت `with:` في خطوة `action-hosting-deploy`، وضيف `NEXT_PUBLIC_SITE_URL: https://peter-eshak-abdo.web.app` في `env` بتاع خطوة الـ build.
-- اختياري: خلّي `tofa7a-5e936.web.app` يعمل redirect للدومين الجديد.
-
-**وبعدها حدّث اللينك** في: LinkedIn، والـ CV (خانة Portfolio)، وبروفايل GitHub.
+- الموقع بقى على **https://peter-eshak.web.app**. والـ site ده كان موجود في مشروع Firebase بتاعك أصلًا.
+- `tofa7a-5e936.web.app` بعد الـ Merge هيعمل **Redirect 301** لكل صفحة على الدومين الجديد، فاللينكات القديمة هتفضل شغالة.
+- الريبو اتغير اسمه لـ **`Peter-Eshak-Abdo/peter-eshak`**، و GitHub بيحوّل اللينكات القديمة أوتوماتيك.
+- حاجات مينفعش تتغير: **Project ID** بتاع Firebase (`tofa7a-5e936`) ثابت للأبد، لكنه مش بيظهر لأي حد. ولو عايز، غيّر الـ **Display name** بس من Firebase Console ← Project settings.
+- عليك:
+  - حدّث لينك الموقع في **LinkedIn** و**بروفايل GitHub** وفي **الـ CV** (خانة Portfolio في ملف الـ Word/PDF).
+  - اسم الفولدر على جهازك لسه `P:\Projects\tofa7a`. غيّره بعد ما تقفل أي برنامج فاتحه (VS Code / Claude).
+  - اختياري: اسم الـ secret `FIREBASE_SERVICE_ACCOUNT_TOFA7A_5E936` داخلي ومش بيظهر. لو حابب تغيّره، اعمل secret جديد بنفس القيمة وعدّل الاسم في الـ workflows.
 
 ## 3) راجع المعلومات اللي استنتجتها (صحّح أي حاجة غلط في `src/content/`)
 
 | المعلومة | الملف | محتاج تأكيد |
 | --- | --- | --- |
-| كورس NTI MEAN: يوليو – سبتمبر 2026 | `journey.ts` | التواريخ بالظبط |
-| كورس ITI Node.js: 2026 | `journey.ts` | الشهر |
 | بداية الكلية 2023 | `journey.ts` | ✔︎ / ✘ |
 | أول تطبيق Next.js حقيقي سنة 2024 | `journey.ts` | ✔︎ / ✘ |
 | أبونا فلتاؤس: 25+ قسم، ~30 API route، 13 تصنيف امتحانات | `projects.ts` | الأرقام اتعدّت من الريبو |
@@ -58,7 +49,16 @@ firebase target:apply hosting portfolio peter-eshak-abdo
 
 لو عندك أرقام من **Vercel Analytics** أو **Google Search Console** (عدد الزوار، المستخدمين، الامتحانات اللي اتعملت…)، ضيفها في `metrics` لكل مشروع في `src/content/projects.ts`.
 
-## 6) صور أحسن للمشاريع (اختياري)
+## 6) صور المشاريع
+
+أضفت **معرض صور جوه كل مشروع**: 12 صورة لأبونا فلتاؤس، و5 لـ Copy Cat، و3 لـ PharmaHub، وصورة موبايل لكل من النسور ونوتة و VoiceClear. كلهم screenshots حقيقية من المواقع اللايف.
+عشان تضيف صور بنفسك (مثلًا صور من جوه النسور بعد تسجيل الدخول):
+
+1. حط الصورة في `assets/gallery/<slug>/<name>.png`. للديسكتوب 1440×900، وللموبايل 390×844 (أو ضعفها).
+2. ضيفها في `gallery` بتاع المشروع في `src/content/projects.ts`، ومعاها caption بالعربي والإنجليزي، و `device: "mobile"` لو صورة موبايل.
+3. شغّل `npm run images`. ولو نسيت صورة، الـ build هيقولك بالظبط أنهي واحدة ناقصة.
+
+### الصورة الرئيسية لكل مشروع (اختياري)
 
 الصور الحالية screenshots أخدتها أوتوماتيك من المواقع اللايف. لو عايز صور أجمل (مثلًا لقطة من جوه أبونا فلتاؤس، أو لقطة موبايل):
 

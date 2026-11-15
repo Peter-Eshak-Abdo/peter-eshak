@@ -48,6 +48,7 @@ scripts/              optimize-images.mjs, postbuild.mjs
 All text lives in `src/content/*.ts`, with every string in both `en` and `ar`. A missing translation, a malformed URL or a duplicate slug fails the build with a readable error.
 
 - **New project**: add an entry to `src/content/projects.ts`. For a screenshot, drop `assets/projects/<slug>.png` and run `npm run images`.
+- **Project gallery**: drop extra screenshots in `assets/gallery/<project-slug>/<name>.png`, list them in the project's `gallery` (add `device: "mobile"` for phone shots), then run `npm run images`. The build fails if a listed image is missing.
 - **New certificate**: add `assets/certifications/<slug>.jpg`, add an entry to `certifications.ts`, then run `npm run images`.
 - **New CV**: replace `assets/Peter-Eshak-Abdo-CV.pdf`, then run `npm run images`.
 
@@ -63,9 +64,13 @@ npm run deploy     # check + firebase deploy (needs `firebase login`)
 
 CI (`.github/workflows`) runs lint, typecheck and build on every PR and deploys a preview channel. Pushes to `main` deploy live, and a daily scheduled run refreshes the GitHub activity indicator.
 
+## Hosting
+
+The site is served from the Firebase Hosting site **`peter-eshak`** (https://peter-eshak.web.app). The old site `tofa7a-5e936.web.app` only 301-redirects every path to the new domain (`hosting-redirect/`). Both sites live in the Firebase project `tofa7a-5e936`. Firebase project IDs can't be renamed, but this one never appears publicly.
+
 ## Environment
 
 | Variable | Purpose |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical origin (default `https://tofa7a-5e936.web.app`) |
+| `NEXT_PUBLIC_SITE_URL` | Canonical origin (default `https://peter-eshak.web.app`) |
 | `GITHUB_TOKEN` | Optional at build time; raises the GitHub API rate limit for the activity indicator |
