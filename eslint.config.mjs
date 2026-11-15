@@ -15,5 +15,5 @@ export default defineConfig([
     files: ["scripts/**"],
     rules: { "no-console": "off" },
   },
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", "public/**", "src/content/snippets/**"]),
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", "public/**", "src/content/snippets/**", ".claude/**"]),
 ]);
