@@ -77,7 +77,30 @@
 - `app/page.tsx` و `package.json`: دي الـ draft القديمة. المعلومات اللي فيها اتنقلت كلها للموقع الجديد، فتقدر تمسحها بـ `git checkout -- app/page.tsx package.json`.
 - `Peter Eshak Abdo.pdf` في أول الريبو: اتنسخ في `assets/`، فتقدر تمسحه.
 
-## 9) تحسينات اختيارية بعدين
+## 9) أيقونة الموقع ⚠️
+
+الصورة اللي بعتها كـ "Image #3" للأيقونة **موصلتليش** (مكانش ليها مسار على الجهاز). فمؤقتًا عملت الأيقونة **دايرة من صورتك البروفيشنال**. لو عايز صورة تانية:
+
+1. حطها مكان `assets/portrait.png`، أو ابعتلي مسارها وأنا أركّبها.
+2. شغّل `npm run images`. ده هيولّد `src/app/icon.png` و `apple-icon.png` و `public/icons/*`.
+
+## 10) الأمان 🔒 (اتعمل)
+
+- **CSP صارم لكل صفحة** فيه hashes بالظبط لكل inline script، و**SRI** على كل ملف JS و CSS. جربت أحقن script على الـ Preview **واتمنع**.
+- **Headers:** HSTS preload، و COOP/COEP/CORP (الموقع `crossOriginIsolated`)، و Permissions-Policy كاملة، و `frame-ancestors 'none'`، وغيرهم. التفاصيل في `SECURITY.md`.
+- **GitHub:** شغّلت Secret scanning + Push protection، و Dependabot security updates، و Private vulnerability reporting، و **CodeQL** (extended). والـ Actions متثبتة على commit SHAs.
+- **عليك (اختياري):**
+  - فعّل **2FA** على حساب GitHub و Google (Firebase) لو مش مفعّل.
+  - اعمل **Branch protection** على `main` (Settings ← Branches): مفيش push مباشر، وكل حاجة تعدّي من PR والـ checks تبقى خضرا. مسيبتهاش أنا عشان انت بتعمل push مباشر أحيانًا.
+  - بعد ما الموقع يبقى لايف، اختبره على https://securityheaders.com و https://observatory.mozilla.org .
+
+## 11) الشهادات
+
+- اتضافت كل الشهادات اللي في فولدر `Certificates` (**81 شهادة في المجموع**)، ومعاها فلترة حسب المجال و7 مميزين في الأول.
+- استبعدت التكرارات: النسخة العربي من شهادة Excel، ونسخة BitDegree التانية، وشهادة Kingston اللي طالعة فاضية من غير اسم.
+- تواريخ شهادات Microsoft Educator Center كلها أكتوبر 2020. وشهادة Minecraft Hour of Code (Code.org) مكتوب عليها 2020 بس، من غير شهر. لو عندك التاريخ بالظبط عدّله في `src/content/certifications.ts`.
+
+## 12) تحسينات اختيارية بعدين
 
 - **الأداء على الموبايل**: Lighthouse بيدي ~80 (ووقت الـ LCP الفعلي أقل من ثانية، بس المحاكاة بتحسب حجم الـ JS). لو عايز توصل لـ 90+، ممكن نخفف Motion في الصفحات الداخلية.
 - **مدونة / مقالات** عن اللي اتعلمته (المحتوى ده بيساعد جدًا في البحث).
