@@ -98,6 +98,7 @@ export function ProjectGallery({
             <div className="flex min-h-0 flex-1 items-start justify-center overflow-auto bg-sunken">
               <Image
                 key={current.src}
+                loading="eager"
                 src={current.src}
                 alt={current.caption}
                 width={current.device === "mobile" ? 780 : 1440}

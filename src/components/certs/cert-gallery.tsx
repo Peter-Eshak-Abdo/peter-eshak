@@ -85,6 +85,7 @@ export function CertGallery({
             <div className="relative min-h-0 flex-1 bg-white">
               <Image
                 key={current.slug}
+                loading="eager"
                 src={`/media/certifications/${current.slug}`}
                 alt={current.title}
                 width={1600}
