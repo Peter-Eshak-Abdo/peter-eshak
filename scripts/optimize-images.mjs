@@ -15,18 +15,47 @@ async function fresh(dir) {
   await mkdir(dir, { recursive: true });
 }
 
+const PORTRAIT = path.join(SRC, "portrait.png");
+
 async function portrait() {
   const dir = path.join(OUT, "portrait");
   await fresh(dir);
-  // 4:5 crop centred on the upper body of the 1200×1600 original.
-  const crop = { left: 190, top: 150, width: 900, height: 1125 };
-  for (const width of [480, 900]) {
-    await sharp(path.join(SRC, "portrait.jpg"))
+  // 4:5 crop of the full width, biased towards the top so the face stays centred.
+  const { width = 0, height = 0 } = await sharp(PORTRAIT).metadata();
+  const cropH = Math.min(height, Math.round(width * 1.25));
+  const crop = { left: 0, top: Math.round((height - cropH) * 0.2), width, height: cropH };
+  for (const w of [480, 900]) {
+    await sharp(PORTRAIT)
       .extract(crop)
-      .resize(width)
-      .webp({ quality: 80 })
-      .toFile(path.join(dir, `portrait-${width}.webp`));
+      .resize({ width: w, withoutEnlargement: true })
+      .webp({ quality: 82 })
+      .toFile(path.join(dir, `portrait-${w}.webp`));
   }
+}
+
+/**
+ * Site icons from the headshot: a round favicon / touch icon (transparent corners) plus a
+ * full-bleed "maskable" PWA icon. Written to src/app (Next metadata files) and public/icons.
+ */
+async function icons() {
+  // Square crop around the face of the 689×1024 headshot.
+  const face = sharp(PORTRAIT).extract({ left: 65, top: 40, width: 560, height: 560 });
+  const round = async (size) => {
+    const mask = Buffer.from(`<svg width="${size}" height="${size}"><circle cx="${size / 2}" cy="${size / 2}" r="${size / 2}"/></svg>`);
+    return face.clone().resize(size, size).composite([{ input: mask, blend: "dest-in" }]).png({ palette: true, quality: 85, compressionLevel: 9 }).toBuffer();
+  };
+  const appDir = path.join(ROOT, "src", "app");
+  const pubDir = path.join(ROOT, "public", "icons");
+  await fresh(pubDir);
+  await sharp(await round(96)).toFile(path.join(appDir, "icon.png")); // favicon
+  await face.clone().resize(180, 180).png({ palette: true, quality: 85 }).toFile(path.join(appDir, "apple-icon.png"));
+  await sharp(await round(192)).toFile(path.join(pubDir, "icon-192.png"));
+  await sharp(await round(512)).toFile(path.join(pubDir, "icon-512.png"));
+  // Maskable: the face fills the safe zone on a solid background.
+  await sharp({ create: { width: 512, height: 512, channels: 3, background: "#e9edf3" } })
+    .composite([{ input: await face.clone().resize(410, 410).toBuffer(), left: 51, top: 51 }])
+    .png({ palette: true, quality: 85 })
+    .toFile(path.join(pubDir, "maskable-512.png"));
 }
 
 async function certifications() {
@@ -100,6 +129,7 @@ async function cv() {
 }
 
 await portrait();
+await icons();
 const certs = await certifications();
 const shots = await projects();
 const galleryShots = await gallery();

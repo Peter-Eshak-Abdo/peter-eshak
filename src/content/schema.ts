@@ -112,7 +112,7 @@ export const certificationSchema = z.object({
   issuer: z.string(),
   date: yearMonth,
   featured: z.boolean(),
-  topic: z.enum(["web", "office", "business", "marketing"]),
+  topic: z.enum(["web", "programming", "office", "education", "design", "business", "marketing", "engineering"]),
 });
 
 export type Profile = z.infer<typeof profileSchema>;

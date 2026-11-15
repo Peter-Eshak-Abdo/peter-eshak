@@ -134,10 +134,12 @@ export const en = {
   },
   certifications: {
     title: "Certificates",
-    intro: "Courses and certificates collected since 2019. The highlights are below; the full album has everything else.",
+    intro: "Courses and certificates collected since 2019 — highlights first, then everything, filterable by topic.",
+    count: "certificates",
+    filterLabel: "Filter certificates by topic",
     featured: "Highlights",
     all: "All certificates",
-    topics: { web: "Web", office: "Office", business: "Business", marketing: "Marketing" },
+    topics: { web: "Web", programming: "Programming", office: "Office", education: "Education & EdTech", design: "Design", business: "Business", marketing: "Marketing", engineering: "Engineering" },
   },
   cv: {
     title: "Curriculum Vitae",

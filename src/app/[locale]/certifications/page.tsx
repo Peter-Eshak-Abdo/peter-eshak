@@ -29,8 +29,11 @@ export default async function CertificationsPage({ params }: { params: Promise<{
     issuer: c.issuer,
     date: formatMonth(c.date, locale),
     featured: c.featured,
-    topic: dict.certifications.topics[c.topic],
+    topic: c.topic,
+    topicLabel: dict.certifications.topics[c.topic],
   }));
+  const topicOrder = ["web", "programming", "office", "education", "design", "business", "marketing", "engineering"] as const;
+  const topics = topicOrder.filter((t) => certifications.some((c) => c.topic === t)).map((t) => ({ id: t, label: dict.certifications.topics[t] }));
 
   return (
     <div className="container-page pt-32 sm:pt-40">
@@ -44,7 +47,18 @@ export default async function CertificationsPage({ params }: { params: Promise<{
       <div className="mt-12">
         <CertGallery
           certs={certs}
-          labels={{ close: dict.a11y.close, previous: dict.a11y.previous, next: dict.a11y.next, view: dict.actions.viewCertificate }}
+          topics={topics}
+          labels={{
+            close: dict.a11y.close,
+            previous: dict.a11y.previous,
+            next: dict.a11y.next,
+            view: dict.actions.viewCertificate,
+            featured: dict.certifications.featured,
+            all: dict.certifications.all,
+            allFilter: dict.projects.filters.all,
+            count: dict.certifications.count,
+            filterLabel: dict.certifications.filterLabel,
+          }}
         />
       </div>
     </div>
